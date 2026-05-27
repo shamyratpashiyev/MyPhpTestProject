@@ -1,0 +1,16 @@
+{
+    "name": "shamyrat/my-test-project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Shamyrat\\MyTestProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "shamyratpashiyev",
+            "email": "shamyratpashiyev96@gmail.com"
+        }
+    ],
+    "require": {}
+}
