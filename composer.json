@@ -3,8 +3,12 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Shamyrat\\MyTestProject\\": "src/"
+            "App\\": "src/"
         }
+    },
+    "scripts": {
+        "dev": "php -S localhost:8000 -t public/",
+        "dump": "composer dump-autoload"
     },
     "authors": [
         {
@@ -12,5 +16,7 @@
             "email": "shamyratpashiyev96@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "illuminate/collections": "^13.12"
+    }
 }
