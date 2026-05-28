@@ -1,6 +1,7 @@
 <?php
 namespace App\Routes;
 
+use App\Controllers\MainController;
 use App\Routes\Route;
 use Exception;
 use Illuminate\Support\Collection;
@@ -16,7 +17,8 @@ class Router {
     public static function initializeRoutes() {
         Router::$routes = collect(
             [
-                new Route("/hello-world", "GET", function() { echo "Hello World!"; })
+                new Route("/hello-world", "GET", function() { echo 'Hello world'; }),
+                new Route("/hey", "GET", [MainController::class, "Index"]),
             ]
         );
     }
@@ -29,6 +31,16 @@ class Router {
             echo "404 - Page Not Found";
             return;
         }
-        ($route->func)();
+        // If it is callable or Controller reference
+        if(is_callable($route->func)) {
+            ($route->func)();
+        }
+        else if (is_array($route->func)){
+            [$controllerClass, $methodName] = $route->func;
+
+            // Instantiate the controller dynamically on demand!
+            $controllerInstance = new $controllerClass();
+            $controllerInstance->$methodName();
+        }
     }
 }
