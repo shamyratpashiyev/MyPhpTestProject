@@ -2,8 +2,22 @@
 
 namespace App\Controllers;
 
-class MainController {
+use Smarty\Smarty;
+
+class MainController extends BaseController {
+
+    public function __construct()
+    {
+        return parent::__construct(new Smarty(), "Main");
+    }
+
     public function Index() {
-        echo 'Hey';
+        $menu = array(
+            ['name' => "Italian pizza"],
+            ['name' => "German sausage"],
+            );
+        $this->smarty->assign("menu", $menu);
+        $this->smarty->assign("title", "Main Page");
+        $this->smarty->display('index.tpl');
     }
 }

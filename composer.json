@@ -17,6 +17,7 @@
         }
     ],
     "require": {
-        "illuminate/collections": "^13.12"
+        "illuminate/collections": "^13.12",
+        "smarty/smarty": "^5.8"
     }
 }
