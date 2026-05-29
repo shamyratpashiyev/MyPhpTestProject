@@ -5,10 +5,10 @@ namespace App\Data;
 use PDO;
 
 class DbContext {
-    private static PDO $context;
+    private static ?PDO $context = null;
 
     public static function Get(): PDO {
-        if (DbContext::$context != null) {
+        if (!is_null(DbContext::$context)) {
             return DbContext::$context;
         }
         $userName = $_ENV["DB_USERNAME"];

@@ -1,7 +1,6 @@
 <?php
 namespace App\Data\Migrations;
 
-use App\Data\BaseMigration;
 use App\Data\Blueprint;
 use App\Data\Schema;
 

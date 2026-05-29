@@ -4,62 +4,47 @@ namespace App\Data;
 use Exception;
 
 class Blueprint {
-    private string $blueprintQuery;
+    private array $columns = [];
+
+    private ?BlueprintType $type;
+
+    private ?string $tableName;
 
     public function __construct(BlueprintType $type, string $tableName) {
-        $this->InitializeQuery($type, $tableName);
+        $this->type = $type;
+        $this->tableName = $tableName;
     }
 
-    private function InitializeQuery(BlueprintType $type, string $tableName): void {
-        switch ($tableName) {
+    public function GetBlueprintQuery(): string {
+        $query = "";
+        switch ($this->type) {
             case BlueprintType::CREATE:
-                $this->blueprintQuery = "CREATE TABLE `{$tableName}` ()";
+                $query = "CREATE TABLE `{$this->tableName}` (" . join(', ', $this->columns) . ')';
                 break;
             default:
                 throw new Exception("Unknown Blueprint type");
         }
-    }
-
-    private function OpenBrackets() {
-        $this->blueprintQuery = str_replace(")", "", $this->blueprintQuery); 
-    }
-
-    private function CloseBrackets() {
-        $this->blueprintQuery . ")";
-    }
-
-    public function GetBlueprintQuery(): string {
-        return $this->blueprintQuery;
+        return $query;
     }
 
     public function Id() {
-        $this->OpenBrackets();
-        $this->blueprintQuery . " `Id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY (`Id`) ";
-        $this->CloseBrackets();
+        array_push($this->columns, "`Id` INT AUTO_INCREMENT NOT NULL, PRIMARY KEY (`Id`)");
     }
 
     public function AutoIncrement(string $columnName) {
-        $this->OpenBrackets();
-        $this->blueprintQuery . " `{$columnName}` INT AUTO_INCREMENT NOT NULL ";
-        $this->CloseBrackets();
+        array_push($this->columns, "`{$columnName}` INT AUTO_INCREMENT NOT NULL");
     }
 
     public function String(string $columnName) {
-        $this->OpenBrackets();
-        $this->blueprintQuery . " `{$columnName}` VARCHAR(255) ";
-        $this->CloseBrackets();
+        array_push($this->columns, "`{$columnName}` VARCHAR(255)");
     }
 
     public function Text(string $columnName) {
-        $this->OpenBrackets();
-        $this->blueprintQuery . " `{$columnName}` TEXT ";
-        $this->CloseBrackets();
+        array_push($this->columns, "`{$columnName}` TEXT");
     }
 
     public function ForeignId(string $keyColumn, string $referencedTable, string $referencedColumn) {
-        $this->OpenBrackets();
-        $this->blueprintQuery . " FOREIGN KEY ({$keyColumn}) REFERENCES {$referencedTable}({$referencedColumn}) ";
-        $this->CloseBrackets();
+        array_push($this->columns, "FOREIGN KEY ({$keyColumn}) REFERENCES {$referencedTable}({$referencedColumn})");
     }
 }
 

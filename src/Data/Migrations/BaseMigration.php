@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace App\Data\Migrations;
 
 abstract class BaseMigration {
     public abstract function Up(): void;
