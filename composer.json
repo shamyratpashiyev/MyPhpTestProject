@@ -8,7 +8,8 @@
     },
     "scripts": {
         "dev": "php -S localhost:8000 -t public/",
-        "dump": "composer dump-autoload"
+        "dump": "composer dump-autoload -o",
+        "migrate": "App\\Console\\Kernel::Migrate"
     },
     "authors": [
         {
