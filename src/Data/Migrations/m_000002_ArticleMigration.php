@@ -6,7 +6,7 @@ use App\Data\Schema;
 use App\Models\Article;
 use App\Models\Category;
 
-class ArticleMigration extends BaseMigration {
+class m_000002_ArticleMigration extends BaseMigration {
     public function Up(): void {
         Schema::Create(Article::GetTableName(), function(Blueprint $blueprint) {
             $blueprint->Id();

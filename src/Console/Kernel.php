@@ -35,7 +35,7 @@ class Kernel {
 
         $classesCollection = new Collection(array_keys($classmap));
 
-        foreach ($classesCollection->where(fn(string $x) => str_contains($x, "Migration")) as $className) {
+        foreach ($classesCollection->where(fn(string $x) => str_contains($x, "Migration"))->sort() as $className) {
             if (class_exists($className)) {
                 $reflection = new ReflectionClass($className);
 
@@ -64,7 +64,7 @@ class Kernel {
 
         $classesCollection = new Collection(array_keys($classmap));
 
-        foreach ($classesCollection->where(fn(string $x) => str_contains($x, "DataSeeder")) as $className) {
+        foreach ($classesCollection->where(fn(string $x) => str_contains($x, "DataSeeder"))->sort() as $className) {
             if (class_exists($className)) {
                 $reflection = new ReflectionClass($className);
 
