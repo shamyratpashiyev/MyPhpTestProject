@@ -10,7 +10,8 @@
         "dev": "php -S localhost:8000 -t public/",
         "dump": "composer dump-autoload -o",
         "migrate": "App\\Console\\Kernel::Migrate",
-        "seed": "App\\Console\\Kernel::Seed"
+        "seed": "App\\Console\\Kernel::Seed",
+        "watch": "sass --watch src/Assets/Scss/Style.scss public/css/style.css"
     },
     "authors": [
         {

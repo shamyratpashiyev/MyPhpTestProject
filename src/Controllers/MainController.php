@@ -14,8 +14,8 @@ class MainController extends BaseController {
 
     public function Index() {
         $categories = Category::GetAll();
-        $this->smarty->assign("categories", $categories);
-        $this->smarty->assign("title", "Main Page");
-        $this->smarty->display('index.tpl');
+        $this->smarty->assign("Categories", $categories);
+        $this->smarty->assign("Title", "Main Page");
+        $this->smarty->display('Index.tpl');
     }
 }
