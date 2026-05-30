@@ -31,8 +31,10 @@ class Blueprint {
         array_push($this->columns, "`Id` INT AUTO_INCREMENT NOT NULL, PRIMARY KEY (`Id`)");
     }
 
-    public function AutoIncrement(string $columnName) {
-        array_push($this->columns, "`{$columnName}` INT AUTO_INCREMENT NOT NULL");
+    public function Int(string $columnName, bool $notNull = true, ?int $defaultValue = null) {
+        array_push($this->columns, "`{$columnName}` INT" 
+        . ($notNull ? " NOT NULL" : '' )
+        . (!is_null($defaultValue) ? " DEFAULT {$defaultValue}" : ''));
     }
 
     public function String(string $columnName) {
@@ -45,6 +47,10 @@ class Blueprint {
 
     public function ForeignId(string $keyColumn, string $referencedTable, string $referencedColumn) {
         array_push($this->columns, "FOREIGN KEY ({$keyColumn}) REFERENCES {$referencedTable}({$referencedColumn})");
+    }
+
+    public function DateTime(string $columnName) {
+        array_push($this->columns, "`{$columnName}` DATETIME");
     }
 }
 
