@@ -5,8 +5,8 @@
     </head>
     <body>
         <ul>
-        {foreach $menu as $menuItem}
-            <li>{$menuItem['name']}</li>
+        {foreach $categories as $category}
+            <li>{$category->Name} - {$category->Description}</li>
         {/foreach}
         </ul>
     </body>

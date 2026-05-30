@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Category;
 use Smarty\Smarty;
 
 class MainController extends BaseController {
@@ -12,11 +13,8 @@ class MainController extends BaseController {
     }
 
     public function Index() {
-        $menu = array(
-            ['name' => "Italian pizza"],
-            ['name' => "German sausage"],
-            );
-        $this->smarty->assign("menu", $menu);
+        $categories = Category::GetAll();
+        $this->smarty->assign("categories", $categories);
         $this->smarty->assign("title", "Main Page");
         $this->smarty->display('index.tpl');
     }

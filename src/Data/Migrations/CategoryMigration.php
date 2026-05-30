@@ -3,12 +3,14 @@ namespace App\Data\Migrations;
 
 use App\Data\Blueprint;
 use App\Data\Schema;
+use App\Models\Category;
 
-class TestMigration extends BaseMigration {
+class CategoryMigration extends BaseMigration {
     public function Up(): void {
-        Schema::Create("Category", function(Blueprint $blueprint) {
+        Schema::Create(Category::GetTableName(), function(Blueprint $blueprint) {
             $blueprint->Id();
             $blueprint->String("Name");
+            $blueprint->Text("Description");
         });
     }
 
