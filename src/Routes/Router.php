@@ -17,8 +17,7 @@ class Router {
     public static function initializeRoutes() {
         Router::$routes = collect(
             [
-                new Route("/hello-world", "GET", function() { echo 'Hello world'; }),
-                new Route("/hey", "GET", [MainController::class, "Index"]),
+                new Route("/", "GET", [MainController::class, "Index"]),
             ]
         );
     }

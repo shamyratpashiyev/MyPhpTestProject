@@ -16,8 +16,10 @@ class s_000002_ArticleDataSeeder extends BaseDataSeeder {
         $faker = Factory::create();
 
         for($i = 0; $i < $rowCount; $i++) {
+            $randomArticleImageInt = random_int(0, $rowCount);
+
             $title = $faker->sentence();
-            $imagePath = $faker->imageUrl();
+            $imagePath = "https://picsum.photos/seed/{$randomArticleImageInt}/300/200";
             $description = $faker->sentences(3, true);
             $text = $faker->realText();
             $categoryId = $categories[random_int(0, $categories->count() - 1)]->Id;

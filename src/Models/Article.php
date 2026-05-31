@@ -14,7 +14,7 @@ class Article extends BaseModel {
     public string $Description;
     public string $Text;
     public string $CategoryId;
-    public DateTime $PublicationDate;
+    public string $PublicationDate;
     public int $ViewCount;
 
     public static function GetTableName(): string {
@@ -27,6 +27,26 @@ class Article extends BaseModel {
     public static function GetAll(): Collection {
         $context = DbContext::Get();
         $result = $context->query("SELECT * FROM " . Article::GetTableName())->fetchAll(PDO::FETCH_CLASS, Article::class);
+        return new Collection($result);
+    }
+
+    /**
+     * * @return Collection<Article>
+     */
+    public static function GetArticlesPerCategory(int $articlesPerCategoryCount): Collection {
+        $context = DbContext::Get();
+        $articleTableName = Article::GetTableName();
+        $result = $context->query("WITH RankedArticles AS (
+                                        SELECT *,
+                                            ROW_NUMBER() OVER (
+                                                PARTITION BY CategoryId 
+                                                ORDER BY Id ASC
+                                            ) AS row_num
+                                        FROM {$articleTableName}
+                                    )
+                                    SELECT * FROM RankedArticles
+                                    WHERE row_num <= {$articlesPerCategoryCount}")
+                ->fetchAll(PDO::FETCH_CLASS, Article::class);
         return new Collection($result);
     }
 }
