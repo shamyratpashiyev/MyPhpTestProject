@@ -10,11 +10,22 @@
   color: #333333;
   line-height: 1.4;
 }
-.article_card .date {
+.article_card .article_metadata {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+.article_card .article_metadata .date {
   font-family: "Inter", Arial, sans-serif;
   font-size: 11px;
   font-weight: 400;
   color: #888888;
+}
+.article_card .article_metadata .views {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #aaaaaa;
 }
 .article_card .content {
   font-family: "Open Sans", "Inter", sans-serif;
@@ -29,6 +40,83 @@
   font-weight: 500;
   color: #333333;
   text-decoration: underline;
+}
+
+.category_page .category_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.category_page .category_container .inner_wrapper {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  padding: 40px 0;
+}
+.category_page .category_container .inner_wrapper .category_header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 20px;
+}
+.category_page .category_container .inner_wrapper .category_header .category_title {
+  font-family: "Poppins", "Inter", "Helvetica Neue", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.category_page .category_container .inner_wrapper .category_header .category_description {
+  font-family: "Open Sans", "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+.category_page .category_container .inner_wrapper .sort_bar {
+  display: flex;
+  align-items: center;
+  column-gap: 14px;
+}
+.category_page .category_container .inner_wrapper .sort_bar .sort_label {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.category_page .category_container .inner_wrapper .sort_bar .sort_option {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555555;
+  text-decoration: none;
+  padding: 5px 14px;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.category_page .category_container .inner_wrapper .sort_bar .sort_option:hover {
+  background-color: #f0f0f0;
+  border-color: #aaaaaa;
+}
+.category_page .category_container .inner_wrapper .sort_bar .sort_option.active {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+.category_page .category_container .inner_wrapper .article_cards_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 20px;
 }
 
 .main_page .categories_container {

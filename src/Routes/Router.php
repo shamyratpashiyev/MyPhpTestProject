@@ -1,6 +1,7 @@
 <?php
 namespace App\Routes;
 
+use App\Controllers\CategoryController;
 use App\Controllers\MainController;
 use App\Routes\Route;
 use Exception;
@@ -18,6 +19,7 @@ class Router {
         Router::$routes = collect(
             [
                 new Route("/", "GET", [MainController::class, "Index"]),
+                new Route("/category", "GET", [CategoryController::class, "Show"]),
             ]
         );
     }

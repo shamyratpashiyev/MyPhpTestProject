@@ -17,6 +17,18 @@ class Category extends BaseModel {
     }
 
     /**
+     * @return Category|null
+     */
+    public static function GetById(int $id): ?Category {
+        $context = DbContext::Get();
+        $tableName = Category::GetTableName();
+        $query = $context->prepare("SELECT * FROM {$tableName} WHERE Id = :id");
+        $query->execute(['id' => $id]);
+        $result = $query->fetchObject(Category::class);
+        return $result ?? null;
+    }
+
+    /**
      * * @return Collection<Category>
      */
     public static function GetAll(): Collection {

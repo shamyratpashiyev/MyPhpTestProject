@@ -31,6 +31,27 @@ class Article extends BaseModel {
     }
 
     /**
+     * @return Collection<Article>
+     */
+    public static function GetByCategoryId(int $categoryId, string $sortBy = 'date'): Collection {
+        $context = DbContext::Get();
+        $tableName = Article::GetTableName();
+
+        $orderColumn = match($sortBy) {
+            'views' => 'ViewCount',
+            default => 'PublicationDate',
+        };
+
+        $query = $context->prepare(
+            "SELECT * FROM {$tableName}" 
+            . " WHERE CategoryId = :categoryId" 
+            . " ORDER BY {$orderColumn}"
+        );
+        $query->execute(['categoryId' => $categoryId]);
+        return new Collection($query->fetchAll(PDO::FETCH_CLASS, Article::class));
+    }
+
+    /**
      * * @return Collection<Article>
      */
     public static function GetArticlesPerCategory(int $articlesPerCategoryCount): Collection {
