@@ -20,7 +20,7 @@
                                         <span class="views">{$article->ViewCount} views</span>
                                     </div>
                                     <p class="content">{$article->Text}</p>
-                                    <a class="continue_button">Continue Reading</a>
+                                    <a class="continue_button" href="/article?id={$article->Id}">Continue Reading</a>
                                 </div>
                             {/foreach}
                         </div>

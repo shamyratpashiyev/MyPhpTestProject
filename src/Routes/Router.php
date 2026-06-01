@@ -1,6 +1,7 @@
 <?php
 namespace App\Routes;
 
+use App\Controllers\ArticleController;
 use App\Controllers\CategoryController;
 use App\Controllers\MainController;
 use App\Routes\Route;
@@ -20,6 +21,7 @@ class Router {
             [
                 new Route("/", "GET", [MainController::class, "Index"]),
                 new Route("/category", "GET", [CategoryController::class, "Show"]),
+                new Route("/article", "GET", [ArticleController::class, "Show"]),
             ]
         );
     }
